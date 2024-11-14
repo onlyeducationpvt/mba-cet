@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Information Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
     <style>
         .custom-shadow {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -33,104 +37,705 @@
         .prose p {
             margin-bottom: 1em;
         }
+      
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  
+}
+
+tr:nth-child(even) {
+  background-color: rgb(249 250 251);
+}
+ul{
+    list-style-type: disc !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+}
+ol{
+    list-style-type:disc !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+}
+
+
+
+/* faq */
+
+.faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+
+/* exam */
+
+.exam-card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .exam-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .exam-header-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .exam-logo {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        .exam-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .exam-main-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .exam-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .exam-detail {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-primary {
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            background: #C41E3A;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #A01830;
+        }
+
+        .highlights-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 1rem;
+        }
+
+        .highlights-table tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+        .highlights-table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .highlights-table td {
+            padding: 1rem 1.5rem;
+            border: 1px solid #e5e7eb;
+            font-weight: 500;
+        }
+
+        .highlights-table td:first-child {
+            width: 30%;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .highlights-table td:last-child {
+            color: #111827;
+        }
+
+        .hidden-highlights {
+            display: none;
+        }
+
+        .hidden-highlights.show {
+            display: table-row;
+        }
+
+        .toggle-button {
+            background: none;
+            border: none;
+            color: #C41E3A;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: underline;
+            padding: 0.5rem;
+            display: block;
+            margin-left: auto;
+        }
+
+        .toggle-button:hover {
+            color: #A01830;
+        }
+
+
+        /* college */
+        .content-preview {
+            position: relative;
+            max-height: 100px;
+            overflow: hidden;
+        }
+
+        .content-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+
+        .content-preview.expanded {
+            max-height: none;
+        }
+
+        .content-preview.expanded::after {
+            display: none;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .toggle-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #C41E3A;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: all 0.2s;
+            border-radius: 0.375rem;
+        }
+
+        .toggle-button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .toggle-button .arrow {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid currentColor;
+            transition: transform 0.2s;
+        }
+
+        .toggle-button.expanded .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Content sections */
+        .sections-wrapper {
+            display: none;
+        }
+
+        .sections-wrapper.show {
+            display: block;
+        }
+
+        /* Override prose max-width */
+        .prose {
+            max-width: none !important;
+        }
+
+
+        /* slider */
+      /* Container Styling */
+      .container {
+            max-width: 100%;
+            overflow: hidden; /* Ensures no overflow outside the container */
+        }
+        .swiper-container {
+            max-width: 100%; /* Prevents overflow on smaller screens */
+        }
+        /* Styling for the news cards */
+        .news-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .news-card-content {
+            padding: 20px;
+        }
+        .news-card-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .news-card-content p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .news-card button {
+            background-color: #c41e3a;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .news-card button:hover {
+            background-color: #a01830;
+        }
+
+
+        /* form */
+
+        .form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#popupContainer .form-container{
+    box-shadow: none !important;
+    padding: 0px !important;
+}
+
+#mainForm h4, #popupContainer h4 {
+    color: #c41e3a;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+#formParentDiv input,
+#formParentDiv select, #popupContainer input, #popupContainer select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #c41e3a;
+    outline: none;
+}
+
+#formParentDiv .submit-btn, #popupContainer .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #c41e3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #a01830;
+}
+
+.error-text {
+    color: #c41e3a;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Popup Styles */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.popup-trigger {
+    padding: 10px 20px;
+    background-color: #c41e3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+#formParentDiv{
+    width: 35%;
+}
+@media (max-width: 900px) {
+    #formParentDiv{
+        width: 70%;
+        margin: auto;
+    }
+    .popup-trigger{
+        margin: 0 !important;
+    }
+}
+@media (max-width: 700px) {
+    #formParentDiv{
+        width: 100%;
+        margin: auto;
+    }
+    #formParentDiv .submit-btn, #popupContainer .submit-btn{
+        font-size: 14px;
+    }
+    #mainForm h4, #popupContainer h4{
+        font-size: 22px;
+    font-weight: 700;
+    }
+   
+}
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Hero Section with Form -->
-    <div class="relative min-h-[500px] bg-cover bg-center" style="background-image: url('/api/placeholder/1920/500');">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div class="container mx-auto px-4 py-20 relative flex justify-between items-center">
+    <div class="bannerImg relative min-h-[500px] bg-cover bg-center object-cover object-center ">
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="container mx-auto px-4 py-8 relative flex justify-between items-center max-w-6xl">
             <!-- Hero Content -->
-            <div class="text-white max-w-xl">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Empower Your Journey with Professional Guidance.</h1>
-                <button class="bg-[#C41E3A] hover:bg-[#A01830] text-white px-6 py-2 rounded-md mt-4">
+            <div class="text-white max-w-xl lg:block hidden">
+                <h1 class="!leading-tight	 text-4xl md:text-5xl font-bold mb-4 ">Empower Your Journey with Professional Guidance.</h1>
+                <button class="bg-[#C41E3A] hover:bg-[#A01830] text-white px-6 py-2 rounded-md mt-4 popup-trigger" onclick="openPopup()">
                     Get In Touch
                 </button>
             </div>
             
             <!-- Registration Form -->
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 class="text-xl font-semibold text-center mb-4">Register Now To Apply</h2>
-                <form class="space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full p-2 border rounded">
-                    <input type="email" placeholder="Email Address" class="w-full p-2 border rounded">
-                    <input type="tel" placeholder="Mobile Number" class="w-full p-2 border rounded">
-                    <button class="w-full bg-[#C41E3A] hover:bg-[#A01830] text-white py-2 rounded">
-                        Submit Free Counselling Request
-                    </button>
+            <div id="formParentDiv">
+                <form id="mainForm" class="form-container">
+                    <h4>Register Now To Apply</h4>
+                    <div class="form-group">
+                        <input type="text" name="Full Name" placeholder="Full Name" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Mobile Number" placeholder="Number" required id="mobileNumber" />
+                        <p id="mobileError" class="error-text"></p>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="Email Address" placeholder="Email" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="City" placeholder="City" required />
+                    </div>
+                    <div class="form-group">
+                        <select name="Selected course" required>
+                            <option value="">Select Course</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Electrical Engineering">Electrical Engineering</option>
+                            <option value="Civil Engineering">Civil Engineering</option>
+                            <option value="Chemical Engineering">Chemical Engineering</option>
+                            <option value="Computer Science Engineering">Computer Science Engineering</option>
+                            <option value="IT Engineering">IT Engineering</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="I Want a Free Counselling Session" class="submit-btn" />
                 </form>
             </div>
+        
+            <!-- Popup Form -->
+            <div id="popupContainer" class="popup-container">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup()">&times;</span>
+                    <form id="popupForm" class="form-container">
+                        <!-- Form content will be cloned here via JavaScript -->
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Latest Notifications -->
-    <div class="container mx-auto px-4 py-8">
-        <h2 class="text-2xl font-bold mb-6">Latest Notifications</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow p-4">
-                <img src="https://mbacet.in/wp-content/uploads/elementor/thumbs/cat-2-qv41w5ueeflw0mwrlpym5v6xx43glv235e9zp8l5n4.png" alt="Notification 1" class="w-full h-48 object-cover rounded mb-4">
-                <h3 class="font-semibold mb-2">XAT 2025 Update: Exam Duration Reduced</h3>
-                <p class="text-gray-600 text-sm mb-4">XAT 2025 exam scheduled for January 5, 2025...</p>
-                <button class="bg-[#C41E3A] hover:bg-[#A01830] text-white px-4 py-2 rounded">Read More</button>
-            </div>
-            <!-- Repeat for other notifications -->
-        </div>
-    </div>
+   
 
     <!-- Featured Exams -->
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <div class="container mx-auto px-4 py-8 max-w-6xl ">
         <h2 class="text-2xl font-bold mb-6">Featured Exams</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            <div class="text-center p-4 border rounded-lg">
-                <img src="https://mbacet.in/wp-content/uploads/elementor/thumbs/cat-2-qv41w5ueeflw0mwrlpym5v6xx43glv235e9zp8l5n4.png" alt="CAT" class="mx-auto mb-2">
-                <p class="text-sm">Exam Date: Jan 17 2025</p>
-            </div>
+        <div id="exams-container"></div>
+
             <!-- Repeat for other exams -->
              
         </div>
     </div>
 
+ <!-- Latest Notifications -->
+ <div class="container mx-auto px-4 py-8 max-w-6xl pt-0">
+    <h2 class="text-2xl font-bold mb-6">Latest Notifications</h2>
+    <div class="swiper-container">
+        <div class="swiper-wrapper" id="news-slider-container">
+            <!-- Slides will be inserted here dynamically -->
+        </div>
+        <!-- Swiper Pagination and Navigation -->
+
+    </div>
+</div>
+
     <!-- Top Management Colleges -->
-    <div class="container max-w-6xl mx-auto px-4 py-8">
+    <div class="container max-w-6xl mx-auto px-4 py-8 ">
         <h2 class="text-2xl font-bold mb-6">Top Management Colleges</h2>
         <div id="colleges-container" class="space-y-4 ">
             <!-- Content will be loaded dynamically -->
+
+        
         </div>
     </div>
 
     <!-- FAQ Section -->
-    <div class="container mx-auto px-4 py-8">
+    <div class="container max-w-6xl mx-auto px-4 py-8 ">
         <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
         <div class="space-y-4">
-            <div class="border rounded-lg p-4">
-                <button class="flex justify-between items-center w-full text-left">
-                    <span class="font-semibold">What is a Management MBA?</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div class="mt-2 text-gray-600 hidden">
-                    Answer content here...
-                </div>
-            </div>
+            <div id="faqList"></div>
             <!-- Repeat for other FAQs -->
         </div>
     </div>
     <script src="api-integration.js"></script>
 
-    <script>
-        // FAQ Toggle
-        document.querySelectorAll('.border.rounded-lg').forEach(faq => {
-            const button = faq.querySelector('button');
-            const content = faq.querySelector('div.mt-2');
-            
-            button.addEventListener('click', () => {
-                content.classList.toggle('hidden');
-                const svg = button.querySelector('svg');
-                svg.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-            });
-        });
+    <script src="faq.js">
+       
+
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+    // Initialize Swiper for Full-Width Banner Slider
+    new Swiper('.full-banner-slider', {
+        loop: true,
+        autoplay: {
+            delay: 5000,  // Slide delay in milliseconds
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+    });
+</script>
+<script src="form.js"></script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const images = [
+    "https://only-education-strapi-media.s3.ap-south-1.amazonaws.com/sp_jain_f2da9534c1.png",
+    "https://only-education-strapi-media.s3.ap-south-1.amazonaws.com/203602_gnjauwkikr_1727366018_709b06159d.jpg"
+  ];
+  
+  const bannerImg = document.querySelector(".bannerImg");
+  
+  if (bannerImg) {
+    let currentIndex = 0;
+    const intervalTime = 2000;
+    
+    // Create background container
+    const bgContainer = document.createElement('div');
+    bgContainer.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    `;
+    bannerImg.style.position = 'relative';
+    bannerImg.insertBefore(bgContainer, bannerImg.firstChild);
+    
+    // Create overlays inside background container
+    const createOverlay = () => {
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 1.5s ease;
+        opacity: 0;
+      `;
+      return overlay;
+    };
+    
+    const overlay1 = createOverlay();
+    const overlay2 = createOverlay();
+    
+    bgContainer.appendChild(overlay1);
+    bgContainer.appendChild(overlay2);
+    
+    // Preload images
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    
+    // Set initial state
+    overlay1.style.backgroundImage = `url('${images[0]}')`;
+    overlay1.style.opacity = '1';
+    
+    let activeOverlay = overlay1;
+    let inactiveOverlay = overlay2;
+    
+    function changeBackground() {
+      currentIndex = (currentIndex + 1) % images.length;
+      
+      [activeOverlay, inactiveOverlay] = [inactiveOverlay, activeOverlay];
+      
+      activeOverlay.style.backgroundImage = `url('${images[currentIndex]}')`;
+      
+      requestAnimationFrame(() => {
+        activeOverlay.style.opacity = '1';
+        inactiveOverlay.style.opacity = '0';
+      });
+    }
+    
+    if (window.innerWidth > 768) {
+      const intervalId = setInterval(changeBackground, intervalTime);
+      
+      window.addEventListener("resize", () => {
+        if (window.innerWidth <= 768) {
+          clearInterval(intervalId);
+        } else if (!intervalId) {
+          setInterval(changeBackground, intervalTime);
+        }
+      });
+    }
+  }
+});
+</script>
+
 </body>
 </html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h4 {
+    color: #c41e3a;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #c41e3a;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #c41e3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #a01830;
+}
+
+.error-text {
+    color: #c41e3a;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Popup Styles */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.popup-trigger {
+    padding: 10px 20px;
+    background-color: #c41e3a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px;
+}
+    </style>
+</head>
+<body>
+    <!-- Inline Form -->
+    <div id="formParentDiv">
+        <form id="mainForm" class="form-container">
+            <h4>Register Now To Apply</h4>
+            <div class="form-group">
+                <input type="text" name="Full Name" placeholder="Full Name" required />
+            </div>
+            <div class="form-group">
+                <input type="text" name="Mobile Number" placeholder="Number" required id="mobileNumber" />
+                <p id="mobileError" class="error-text"></p>
+            </div>
+            <div class="form-group">
+                <input type="email" name="Email Address" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+                <input type="text" name="City" placeholder="City" required />
+            </div>
+            <div class="form-group">
+                <select name="Selected course" required>
+                    <option value="">Select Course</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Chemical Engineering">Chemical Engineering</option>
+                    <option value="Computer Science Engineering">Computer Science Engineering</option>
+                    <option value="IT Engineering">IT Engineering</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <input type="submit" value="I Want a Free Counselling Session" class="submit-btn" />
+        </form>
+    </div>
+
+    <!-- Popup Form -->
+    <div id="popupContainer" class="popup-container">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <form id="popupForm" class="form-container">
+                <!-- Form content will be cloned here via JavaScript -->
+            </form>
+        </div>
+    </div>
+
+    <!-- Trigger button for popup -->
+    <button onclick="openPopup()" class="popup-trigger">Open Form</button>
+
+    <script src="script.js"></script>
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    const mainForm = document.querySelector('#mainForm');
+    const popupForm = document.querySelector('#popupForm');
+    popupForm.innerHTML = mainForm.innerHTML;
+
+    [mainForm, popupForm].forEach(form => {
+        form.addEventListener('submit', handleSubmit);
+    });
+});
+
+let isSubmitting = false;
+
+async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+    if (!validateMobileNumber(this)) return;
+
+    isSubmitting = true;
+    const submitBtn = this.querySelector('input[type="submit"]');
+    const originalText = submitBtn.value;
+    submitBtn.value = 'Submitting...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(this);
+    formData.append('Date', new Date().toLocaleString());
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwZoNwEEs5snqzSwsP2hcvZ-wysExawgyv7QKIfABOYtt4FlODZnDGVxhw2jz_dX7f9/exec';
+
+    try {
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData).toString()
+        });
+
+        if (response.ok) {
+            this.reset();
+            if (this.id === 'popupForm') {
+                closePopup();
+            }
+            showThankYouMessage(this);
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    } catch (error) {
+        console.error('Error!', error.message);
+        alert('Error submitting form. Please try again.');
+    } finally {
+        isSubmitting = false;
+        submitBtn.value = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+function showThankYouMessage(form) {
+    const thankYouDiv = document.createElement('div');
+    thankYouDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        text-align: center;
+        z-index: 1001;
+    `;
+    thankYouDiv.innerHTML = `
+        <h3 style="color: #c41e3a; margin-bottom: 15px;">Thank You!</h3>
+        <p>Your form has been submitted successfully.</p>
+        <p>We will contact you shortly.</p>
+        <button onclick="this.parentElement.remove()" 
+                style="margin-top: 15px; padding: 8px 20px; background: #c41e3a; 
+                       color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Close
+        </button>
+    `;
+    document.body.appendChild(thankYouDiv);
+}
+
+// Rest of the functions remain the same
+function validateMobileNumber(form) {
+    const mobileInput = form.querySelector('[name="Mobile Number"]');
+    const mobileError = form.querySelector('#mobileError');
+    const mobileNumber = mobileInput.value.trim();
+
+    if (!/^\d{10}$/.test(mobileNumber)) {
+        mobileError.textContent = 'Please enter a valid 10-digit mobile number';
+        return false;
+    }
+
+    mobileError.textContent = '';
+    return true;
+}
+
+function openPopup() {
+    document.getElementById('popupContainer').style.display = 'flex';
+}
+
+function closePopup() {
+    document.getElementById('popupContainer').style.display = 'none';
+}
+
+setTimeout(openPopup, 5000);
+    </script>
+</body>
+</html>

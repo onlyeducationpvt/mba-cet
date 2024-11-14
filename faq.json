@@ -1,0 +1,49 @@
+{
+  "faqItems": [
+    {
+      "id": 1,
+      "question": "What is institutional quota?",
+      "answer": "The institutional quota refers to a percentage of seats reserved by educational institutions for direct admission through management, bypassing standard entrance exams."
+    },
+    {
+      "id": 2,
+      "question": "What is Management NRI quota eligibility?",
+      "answer": "Candidates must have completed their undergraduate degree and meet the minimum aggregate percentage set by the institution. NRI students often require specific documentation, such as a valid passport and proof of residency."
+    },
+    {
+      "id": 3,
+      "question": "Can I get direct admission in MBA?",
+      "answer": "Yes, many colleges offer direct admission to MBA programs through management quota or institutional seats without requiring an entrance exam score."
+    },
+    {
+      "id": 4,
+      "question": "Is management quota available in MBA?",
+      "answer": "Yes, management quota seats are available in many MBA colleges, allowing students to secure admission based on recommendations from the college administration rather than through entrance exams."
+    },
+    {
+      "id": 5,
+      "question": "What is the cut-off for MBA admission?",
+      "answer": "The cut-off varies by institution and is typically determined by entrance exam scores (like MAH CET) and the number of applicants. Specific cut-offs for 2025 will be announced closer to the admission dates."
+    },
+    {
+      "id": 6,
+      "question": "What is the top entrance exam 2025?",
+      "answer": "The Common Admission Test (CAT) remains one of the top entrance exams for MBA admissions in India, along with other exams like XAT, MAT, and MAH CET."
+    },
+    {
+      "id": 7,
+      "question": "What is the date of MH CET 2025?",
+      "answer": "The MH CET 2025 exam is expected to be conducted in March 2025, with specific dates yet to be announced by the Maharashtra State CET Cell."
+    },
+    {
+      "id": 8,
+      "question": "How can I get admission in JBIMS Mumbai 2025?",
+      "answer": "Admission to JBIMS Mumbai typically requires a good score in MAH CET or other recognized entrance exams, followed by a personal interview. Candidates should check the official JBIMS website for detailed application procedures."
+    },
+    {
+      "id": 9,
+      "question": "How to apply for JBIMS?",
+      "answer": "Candidates can apply for JBIMS by visiting the official website, completing the online application form, and submitting required documents along with the application fee during the designated application period."
+    }
+  ]
+}
