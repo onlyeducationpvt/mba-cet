@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Information Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .custom-shadow {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+                .line-clamp-4 {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            position: relative;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .prose :is(h1, h2, h3, h4, h5, h6) {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .prose p {
+            margin-bottom: 1em;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section with Form -->
+    <div class="relative min-h-[500px] bg-cover bg-center" style="background-image: url('/api/placeholder/1920/500');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto px-4 py-20 relative flex justify-between items-center">
+            <!-- Hero Content -->
+            <div class="text-white max-w-xl">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Empower Your Journey with Professional Guidance.</h1>
+                <button class="bg-[#C41E3A] hover:bg-[#A01830] text-white px-6 py-2 rounded-md mt-4">
+                    Get In Touch
+                </button>
+            </div>
+            
+            <!-- Registration Form -->
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 class="text-xl font-semibold text-center mb-4">Register Now To Apply</h2>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Full Name" class="w-full p-2 border rounded">
+                    <input type="email" placeholder="Email Address" class="w-full p-2 border rounded">
+                    <input type="tel" placeholder="Mobile Number" class="w-full p-2 border rounded">
+                    <button class="w-full bg-[#C41E3A] hover:bg-[#A01830] text-white py-2 rounded">
+                        Submit Free Counselling Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Notifications -->
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Latest Notifications</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow p-4">
+                <img src="https://mbacet.in/wp-content/uploads/elementor/thumbs/cat-2-qv41w5ueeflw0mwrlpym5v6xx43glv235e9zp8l5n4.png" alt="Notification 1" class="w-full h-48 object-cover rounded mb-4">
+                <h3 class="font-semibold mb-2">XAT 2025 Update: Exam Duration Reduced</h3>
+                <p class="text-gray-600 text-sm mb-4">XAT 2025 exam scheduled for January 5, 2025...</p>
+                <button class="bg-[#C41E3A] hover:bg-[#A01830] text-white px-4 py-2 rounded">Read More</button>
+            </div>
+            <!-- Repeat for other notifications -->
+        </div>
+    </div>
+
+    <!-- Featured Exams -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <h2 class="text-2xl font-bold mb-6">Featured Exams</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            <div class="text-center p-4 border rounded-lg">
+                <img src="https://mbacet.in/wp-content/uploads/elementor/thumbs/cat-2-qv41w5ueeflw0mwrlpym5v6xx43glv235e9zp8l5n4.png" alt="CAT" class="mx-auto mb-2">
+                <p class="text-sm">Exam Date: Jan 17 2025</p>
+            </div>
+            <!-- Repeat for other exams -->
+             
+        </div>
+    </div>
+
+    <!-- Top Management Colleges -->
+    <div class="container max-w-6xl mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Top Management Colleges</h2>
+        <div id="colleges-container" class="space-y-4 ">
+            <!-- Content will be loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <div class="border rounded-lg p-4">
+                <button class="flex justify-between items-center w-full text-left">
+                    <span class="font-semibold">What is a Management MBA?</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="mt-2 text-gray-600 hidden">
+                    Answer content here...
+                </div>
+            </div>
+            <!-- Repeat for other FAQs -->
+        </div>
+    </div>
+    <script src="api-integration.js"></script>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.border.rounded-lg').forEach(faq => {
+            const button = faq.querySelector('button');
+            const content = faq.querySelector('div.mt-2');
+            
+            button.addEventListener('click', () => {
+                content.classList.toggle('hidden');
+                const svg = button.querySelector('svg');
+                svg.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        });
+    </script>
+</body>
+</html>
